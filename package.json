@@ -1,0 +1,34 @@
+{
+  "name": "bookstore-manager-cli",
+  "version": "1.0.0",
+  "description": "Sistema de gerenciamento de livraria via terminal (CLI) em Node.js, TypeScript e PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node index.js",
+    "dev": "ts-node src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alessandra-basso/BookStore-Manager-CLI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alessandra-basso/BookStore-Manager-CLI/issues"
+  },
+  "homepage": "https://github.com/alessandra-basso/BookStore-Manager-CLI#readme",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/pg": "^8.23.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
