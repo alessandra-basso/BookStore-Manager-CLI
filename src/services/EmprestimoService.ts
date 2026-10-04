@@ -52,4 +52,15 @@ export class EmprestimoService {
   async listarEmprestimos(): Promise<Emprestimo[]> {
     return await this.emprestimoRepo.listarTodos();
   }
+
+  async relatorioDisponiveis() { 
+    return await this.emprestimoRepo.relatorioLivrosDisponiveis(); }
+  async relatorioEmprestados() { 
+    return await this.emprestimoRepo.relatorioLivrosEmprestados(); }
+  async relatorioPorAutor() { 
+    return await this.emprestimoRepo.relatorioLivrosPorAutor(); }
+  async relatorioQtdPorLivro() { 
+    return await this.emprestimoRepo.relatorioQuantidadeEmprestimosPorLivro(); }
+  async relatorioClientesAtivos() { 
+    return await this.emprestimoRepo.relatorioClientesEmprestimosAtivos(); }
 }

@@ -11,7 +11,7 @@ export class EmprestimoController {
   async menu(): Promise<void> {
     let opcao = '';
     while (opcao !== '0') {
-      console.log('\n--- 🔄 GERENCIAMENTO DE EMPRÉSTIMOS ---');
+      console.log('\n--- GERENCIAMENTO DE EMPRÉSTIMOS ---');
       console.log('1. Realizar Empréstimo');
 
       opcao = readlineSync.question('Escolha uma opção: ');
