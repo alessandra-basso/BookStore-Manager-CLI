@@ -19,7 +19,7 @@ export async function testConection(): Promise<boolean> {
         client.release();
         return true;
     } catch (error) {
-        console.error('Erro ao conectar ao banco de dados PostgreSQL:', error);
+        console.error('\u274c Erro ao conectar ao banco de dados PostgreSQL:', error);
         return false;
     }
 }
