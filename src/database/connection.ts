@@ -13,7 +13,7 @@ export const pool = new Pool({
     database: process.env.DB_NAME || 'bookstore_db',
 });
 
-export async function testConection(): Promise<boolean> {
+export async function testConnection(): Promise<boolean> {
     try {
         const client = await pool.connect();
         client.release();
