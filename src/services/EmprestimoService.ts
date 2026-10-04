@@ -29,4 +29,23 @@ export class EmprestimoService {
 
     return await this.emprestimoRepo.criar(livroId, clienteId);
   }
+
+  async devolverLivro(emprestimoId: number): Promise<Emprestimo> {
+    const emprestimo = await this.emprestimoRepo.buscarPorId(emprestimoId);
+    if (!emprestimo) throw new Error(`Empréstimo com ID ${emprestimoId} não encontrado.`);
+
+    if (emprestimo.data_devolucao) {
+      throw new Error('Este empréstimo já foi devolvido anteriormente.');
+    }
+
+    const devolvido = await this.emprestimoRepo.registrarDevolucao(emprestimoId);
+    if (!devolvido) throw new Error('Erro ao registrar a devolução.');
+
+    const livro = await this.livroRepo.buscarPorId(emprestimo.livro_id);
+    if (livro) {
+      await this.livroRepo.atualizarQuantidade(livro.id!, livro.quantidade_disponivel + 1);
+    }
+
+    return devolvido;
+  }
 }

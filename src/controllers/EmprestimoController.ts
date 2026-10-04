@@ -34,4 +34,10 @@ export class EmprestimoController {
     const emp = await this.emprestimoService.realizarEmprestimo(livroId, clienteId);
     console.log(`\n Empréstimo registrado com sucesso! ID do Empréstimo: ${emp.id}`);
   }
+
+  private async devolver(): Promise<void> {
+    const empId = readlineSync.questionInt('ID do Empréstimo a devolver: ');
+    await this.emprestimoService.devolverLivro(empId);
+    console.log('\n Livro devolvido e estoque atualizado com sucesso!');
+  }
 }
