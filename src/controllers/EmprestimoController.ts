@@ -19,6 +19,8 @@ export class EmprestimoController {
       try {
         switch (opcao) {
           case '1': await this.realizarEmprestimo(); break;
+          case '2': await this.devolver(); break;
+          case '3': await this.listar(); break;
           case '0': console.log('Voltando...'); break;
           default: console.log('Opção inválida!');
         }
@@ -39,5 +41,18 @@ export class EmprestimoController {
     const empId = readlineSync.questionInt('ID do Empréstimo a devolver: ');
     await this.emprestimoService.devolverLivro(empId);
     console.log('\n Livro devolvido e estoque atualizado com sucesso!');
+  }
+
+  private async listar(): Promise<void> {
+    const lista = await this.emprestimoService.listarEmprestimos();
+    console.log(`\n--- Histórico de Empréstimos ---`);
+    if (lista.length === 0){
+        console.log('Nenhum empréstimo cadastrado.');
+        return;
+    }
+    lista.forEach(e => {
+        const status = e.data_devolucao ? `Devolvido em ${new Date(e.data_devolucao).toLocaleDateString('pt-BR')}` : 'ATIVO';
+        console.log(`[ID: ${e.id}] Livro: ${e.livro_titulo} | Cliente: ${e.cliente_nome} | Data: ${new Date(e.data_emprestimo!).toLocaleDateString('pt-BR')} | Status: ${status}`);
+    });
   }
 }

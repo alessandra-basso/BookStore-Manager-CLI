@@ -48,4 +48,8 @@ export class EmprestimoService {
 
     return devolvido;
   }
+
+  async listarEmprestimos(): Promise<Emprestimo[]> {
+    return await this.emprestimoRepo.listarTodos();
+  }
 }

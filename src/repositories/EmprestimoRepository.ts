@@ -38,4 +38,19 @@ export class EmprestimoRepository {
     const r = result.rows[0];
     return new Emprestimo(r.livro_id, r.cliente_id, r.id, r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome);
   }
+
+  async listarTodos(): Promise<Emprestimo[]> {
+    const query = `
+      SELECT e.id, e.livro_id, e.cliente_id, e.data_emprestimo, e.data_devolucao,
+             l.titulo as livro_titulo, c.nome as cliente_nome
+      FROM emprestimos e
+      INNER JOIN livros l ON e.livro_id = l.id
+      INNER JOIN clientes c ON e.cliente_id = c.id
+      ORDER BY e.id DESC;
+    `;
+    const result = await pool.query(query);
+    return result.rows.map(
+      r => new Emprestimo(r.livro_id, r.cliente_id, r.id, r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome)
+    );
+  }
 }  
