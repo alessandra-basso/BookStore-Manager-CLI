@@ -19,7 +19,7 @@ export class LivroController {
       console.log('5. Remover Livro');
       console.log('0. Voltar ao Menu Principal');
 
-      opcao = readlineSync.question('Escolha uma opcao: ');
+      opcao = readlineSync.question('Escolha uma opção: ');
 
         try {
             switch (opcao) {
