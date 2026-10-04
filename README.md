@@ -52,11 +52,11 @@ npm install
 
 ### 4. Configurar Variáveis de Ambiente
 Crie um arquivo .env na raiz do projeto com as suas credenciais locais do PostgreSQL:\
-`DB_HOST=localhost\
-DB_PORT=5432\
-DB_USER=postgres\
-DB_PASSWORD=suasenha\
-DB_NAME=bookstore_db`\
+``DB_HOST=localhost  
+DB_PORT=5432  
+DB_USER=postgres  
+DB_PASSWORD=suasenha  
+DB_NAME=bookstore_db``
 
 ### 5. Executar a Aplicação
 1. Em ambiente de desenvolvimento
