@@ -38,9 +38,9 @@ export class LivroController {
 }
 
     private async cadastrar(): Promise<void> {
-        const titulo = readlineSync.question('Título do Livro: ');
+        const titulo = readlineSync.question('Titulo do Livro: ');
         const autor_id = readlineSync.questionInt('ID do Autor: ');
-        const ano_publicacao = readlineSync.questionInt('Ano de Publicação: ');
+        const ano_publicacao = readlineSync.questionInt('Ano de Publicacao: ');
         const quantidade = readlineSync.questionInt('Quantidade em Estoque: ');
 
         const livro = await this.livroService.cadastrarLivro(titulo, autor_id, ano_publicacao, quantidade);
@@ -67,7 +67,7 @@ export class LivroController {
 
     private async atualizar(): Promise<void> {
         const id = readlineSync.questionInt('ID do Livro a ser atualizado: ');
-        const titulo = readlineSync.question('Novo Título: ');
+        const titulo = readlineSync.question('Novo Titulo: ');
         const autor_id = readlineSync.questionInt('Novo ID do Autor: ');
         const ano = readlineSync.questionInt('Novo Ano: ');
         const qtd = readlineSync.questionInt('Nova Quantidade: ');
