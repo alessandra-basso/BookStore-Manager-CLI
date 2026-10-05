@@ -13,8 +13,11 @@ export class EmprestimoController {
     while (opcao !== '0') {
       console.log('\n--- GERENCIAMENTO DE EMPRÉSTIMOS ---');
       console.log('1. Realizar Empréstimo');
+      console.log('2. Registrar Devolução');
+      console.log('3. Listar Empréstimos');
+      console.log('0. Voltar ao Menu Principal');
 
-      opcao = readlineSync.question('Escolha uma opção: ');
+      opcao = readlineSync.question('Escolha uma opcao: ');
 
       try {
         switch (opcao) {
