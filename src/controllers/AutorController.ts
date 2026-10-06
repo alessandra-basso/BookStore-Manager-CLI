@@ -19,7 +19,7 @@ export class AutorController {
             console.log('5. Remover Autor');
             console.log('0. Voltar ao Menu Principal');
 
-            opcao = readlineSync.question('Escolha uma opção: ');
+            opcao = readlineSync.question('Escolha uma opcao: ');
 
             try{
                 switch(opcao) {
