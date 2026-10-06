@@ -28,7 +28,6 @@ CREATE TABLE emprestimos (
     id SERIAL PRIMARY KEY,
     livro_id INT NOT NULL REFERENCES livros(id) ON DELETE CASCADE,
     cliente_id INT NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
-    autor_id INT NOT NULL REFERENCES autores(id) ON DELETE CASCADE,
     data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_devolucao TIMESTAMP
+    data_devolucao TIMESTAMP DEFAULT NULL
 );
