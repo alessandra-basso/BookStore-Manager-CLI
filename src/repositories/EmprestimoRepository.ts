@@ -9,7 +9,7 @@ export class EmprestimoRepository {
     `;
     const result = await pool.query(query, [livroId, clienteId]);
     const row = result.rows[0];
-    return new Emprestimo(Number(row.livro_id), Number(row.cliente_id), Number(row.id), new Date(row.data_emprestimo), row.data_devolucao ? new Date(row.data_devolucao) : null);
+    return new Emprestimo(Number(row.livro_id), Number(row.cliente_id), (row.id), new Date(row.data_emprestimo), (row.data_devolucao));
   }
 
   async registrarDevolucao(emprestimoId: number): Promise<Emprestimo | null> {
@@ -22,7 +22,7 @@ export class EmprestimoRepository {
     const result = await pool.query(query, [emprestimoId]);
     if (result.rows.length === 0) return null;
     const r = result.rows[0];
-    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), Number(r.id), r.data_emprestimo, new Date(r.data_devolucao));
+    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), (r.id), r.data_emprestimo, (r.data_devolucao));
   }
 
   async buscarPorId(id: number): Promise<Emprestimo | null> {
@@ -37,7 +37,7 @@ export class EmprestimoRepository {
     const result = await pool.query(query, [id]);
     if (result.rows.length === 0) return null;
     const r = result.rows[0];
-    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), Number(r.id), r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome);
+    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), (r.id), r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome);
   }
 
   async listarTodos(): Promise<Emprestimo[]> {
@@ -51,7 +51,7 @@ export class EmprestimoRepository {
     `;
     const result = await pool.query(query);
     return result.rows.map(
-      r => new Emprestimo(Number(r.livro_id), Number(r.cliente_id), Number(r.id), r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome)
+      r => new Emprestimo(Number(r.livro_id), Number(r.cliente_id), (r.id), r.data_emprestimo, r.data_devolucao, r.livro_titulo, r.cliente_nome)
     );
   }
 
