@@ -20,8 +20,8 @@ export class Emprestimo implements IEmprestimo {
     constructor(
         livro_id: number, 
         cliente_id: number, 
-        data_emprestimo?: Date, 
-        data_devolucao?: Date | null,
+        data_emprestimo?: Date = new Date(),
+        data_devolucao?: Date | null = null,
         id?: number,
         livro_titulo?: string,
         cliente_nome?: string
