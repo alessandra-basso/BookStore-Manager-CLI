@@ -4,24 +4,25 @@ import { Emprestimo } from '../models/Emprestimo.js';
 export class EmprestimoRepository {
   async criar(livroId: number, clienteId: number): Promise<Emprestimo> {
     const query = `
-      INSERT INTO emprestimos (livro_id, cliente_id, data_emprestimo)
-      VALUES ($1, $2, NOW()) RETURNING id, livro_id, cliente_id, data_emprestimo, data_devolucao;
+      INSERT INTO emprestimos (livro_id, cliente_id, data_emprestimo, data_devolucao)
+      VALUES ($1, $2, NOW(), NULL) RETURNING id, livro_id, cliente_id, data_emprestimo, data_devolucao;
     `;
     const result = await pool.query(query, [livroId, clienteId]);
     const row = result.rows[0];
-    return new Emprestimo(Number(row.livro_id), Number(row.cliente_id), Number(row.id), row.data_emprestimo, row.data_devolucao);
+    return new Emprestimo(Number(row.livro_id), Number(row.cliente_id), Number(row.id), new Date(row.data_emprestimo), row.data_devolucao ? new Date(row.data_devolucao) : null);
   }
 
   async registrarDevolucao(emprestimoId: number): Promise<Emprestimo | null> {
     const query = `
-      UPDATE emprestimos SET data_devolucao = NOW()
+      UPDATE emprestimos 
+      SET data_devolucao = NOW()
       WHERE id = $1 AND data_devolucao IS NULL
       RETURNING id, livro_id, cliente_id, data_emprestimo, data_devolucao;
     `;
     const result = await pool.query(query, [emprestimoId]);
     if (result.rows.length === 0) return null;
     const r = result.rows[0];
-    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), Number(r.id), r.data_emprestimo, r.data_devolucao);
+    return new Emprestimo(Number(r.livro_id), Number(r.cliente_id), Number(r.id), r.data_emprestimo, new Date(r.data_devolucao));
   }
 
   async buscarPorId(id: number): Promise<Emprestimo | null> {
