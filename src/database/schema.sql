@@ -29,5 +29,5 @@ CREATE TABLE emprestimos (
     livro_id INT NOT NULL REFERENCES livros(id) ON DELETE CASCADE,
     cliente_id INT NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
     data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_devolucao TIMESTAMP
+    data_devolucao TIMESTAMP DEFAULT NULL
 );
